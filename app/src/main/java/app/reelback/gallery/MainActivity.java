@@ -629,10 +629,62 @@ public final class MainActivity extends Activity {
         addSheetItem(list, isFavorite(clip) ? "heart-filled" : "heart",
                 isFavorite(clip) ? "Remove from Favorites" : "Add to Favorites", null, Color.WHITE,
                 () -> favorite(clip, true));
+        boolean watchedAlready = isWatched(clip);
+        addSheetItem(list, "history", watchedAlready ? "Mark as unwatched" : "Mark as watched",
+                null, Color.WHITE, () -> setWatchedFromMenu(clip, !watchedAlready));
+        addSheetItem(list, "details", "Video details", null, Color.WHITE, () -> videoDetails(clip));
         addSheetItem(list, "forward", "Share video", null, Color.WHITE, () -> share(clip));
         addSheetItem(list, "trash", "Move to Trash", null, 0xffff637e, () -> trash(clip));
         addSheetItem(list, "sliders", "Settings", null, Color.WHITE, this::settings);
         showVideoSheet("Video options", list);
+    }
+
+    private void setWatchedFromMenu(VideoLibrary.Video clip, boolean mark) {
+        if (pane == null || pane.video == null || !pane.video.key.equals(clip.key)) return;
+        if (mark) {
+            recordWatch(clip);
+            if (tab == FEED) step(1);
+            notifyText("Moved to History");
+            return;
+        }
+
+        pane.stopTrackingCurrent();
+        watched.remove(clip.key);
+        unfinished.remove(clip.key);
+        historyWorker.execute(() -> {
+            try {
+                historyDb.forget(clip.key);
+            } catch (RuntimeException e) {
+                Log.e("Reelback", "Couldn't update watch history", e);
+            }
+        });
+        if (tab == HISTORY) {
+            collectionPlayer = false;
+            removePane();
+            updateQueue(null, 0);
+            render();
+            animateStage(-1);
+        } else {
+            pane.refreshNeighbors();
+        }
+        notifyText(sources.includes(clip) ? "Available in Home again" : "Marked as unwatched");
+    }
+
+    private void videoDetails(VideoLibrary.Video clip) {
+        LinearLayout list = column();
+        list.setPadding(dp(14), dp(12), dp(14), dp(6));
+        TextView title = text(clip.title, 18, PAPER, "sans-serif-medium");
+        title.setMaxLines(3);
+        title.setEllipsize(TextUtils.TruncateAt.END);
+        list.addView(title, new LinearLayout.LayoutParams(MATCH, WRAP));
+        list.addView(settingsRow("Album", clip.album));
+        list.addView(settingsRow("Duration", time(clip.duration)));
+        if (clip.width > 0 && clip.height > 0) {
+            String shape = clip.portrait() ? "Portrait" : clip.landscape() ? "Landscape" : "Square";
+            list.addView(settingsRow("Frame", clip.width + " × " + clip.height + "  ·  " + shape));
+        }
+        if (!clip.path.isEmpty()) list.addView(settingsRow("Folder", clip.path));
+        showVideoSheet("Video details", list);
     }
 
     private void speedOptions() {

@@ -35,4 +35,8 @@ final class WatchHistory extends SQLiteOpenHelper {
         values.put("watched_at", now);
         getWritableDatabase().insertWithOnConflict("seen", null, values, SQLiteDatabase.CONFLICT_IGNORE);
     }
+
+    void forget(String key) {
+        getWritableDatabase().delete("seen", "video_key = ?", new String[]{key});
+    }
 }

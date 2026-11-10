@@ -150,6 +150,12 @@ final class Glyph extends View {
                 line(c, p, 6, 12, 18, 12);
                 line(c, p, 9, 18, 15, 18);
                 break;
+            case "details":
+                c.drawRoundRect(5, 3.5f, 19, 20.5f, 2.5f, 2.5f, p);
+                line(c, p, 8.5f, 8, 15.5f, 8);
+                line(c, p, 8.5f, 12, 15.5f, 12);
+                line(c, p, 8.5f, 16, 13, 16);
+                break;
             case "right": line(c,p, 9, 6, 15, 12, 9, 18); break;
             case "down": line(c,p, 6, 9, 12, 15, 18, 9); break;
             case "up": line(c,p, 6, 15, 12, 9, 18, 15); break;

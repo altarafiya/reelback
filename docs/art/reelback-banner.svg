@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="460" viewBox="0 0 1200 460" role="img" aria-labelledby="title description">
+  <title id="title">Reelback</title>
+  <desc id="description">An offline swipe feed for the videos you meant to rewatch</desc>
+  <defs>
+    <linearGradient id="bg" x2="1" y2="1" gradientUnits="objectBoundingBox">
+      <stop stop-color="#111019"/><stop offset="1" stop-color="#1D1529"/>
+    </linearGradient>
+    <radialGradient id="glow">
+      <stop stop-color="#75569E" stop-opacity=".61"/><stop offset="1" stop-color="#75569E" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="night" x1="0" y1="0" x2="0" y2="1" gradientUnits="objectBoundingBox">
+      <stop stop-color="#231D3D"/><stop offset=".7" stop-color="#6B508F"/><stop offset="1" stop-color="#463259"/>
+    </linearGradient>
+    <linearGradient id="warm" x1="0" y1="0" x2="0" y2="1" gradientUnits="objectBoundingBox">
+      <stop stop-color="#352D4C"/><stop offset="1" stop-color="#C18787"/>
+    </linearGradient>
+    <pattern id="grid" width="22" height="22" patternUnits="userSpaceOnUse">
+      <circle cx="1" cy="1" r="1" fill="#D4BCFF" opacity=".17"/>
+    </pattern>
+    <clipPath id="screen"><rect x="786" y="67" width="179" height="326" rx="24"/></clipPath>
+  </defs>
+  <rect width="1200" height="460" rx="36" fill="url(#bg)"/>
+  <rect x="1" y="1" width="1198" height="458" rx="35" fill="none" stroke="#594367" opacity=".7"/>
+  <ellipse cx="891" cy="239" rx="339" ry="219" fill="url(#glow)"/>
+  <rect x="630" y="37" width="505" height="385" fill="url(#grid)"/>
+
+  <g transform="translate(72 66)">
+    <rect width="64" height="64" rx="19" fill="#D1BEFF"/>
+    <g transform="translate(-6 -6) scale(.7)">
+      <path fill="#191323" d="M49 32h16q6 0 6 6v26q0 6-6 6H49q-6 0-6-6V38q0-6 6-6Z"/>
+      <path fill="#D1BEFF" stroke="#191323" stroke-width="3" d="M41 38h16q6 0 6 6v26q0 6-6 6H41q-6 0-6-6V44q0-6 6-6Z"/>
+      <path fill="#191323" d="M46 50q0-2 2-1l8 6q2 2 0 4l-8 6q-2 1-2-1Z"/>
+    </g>
+  </g>
+  <g font-family="system-ui, -apple-system, Segoe UI, sans-serif">
+    <text x="74" y="222" fill="#FBF6FF" font-size="81" font-weight="750" letter-spacing="-4">Reelback</text>
+    <text x="79" y="279" fill="#ECE1F3" font-size="31" font-weight="500">The videos you meant</text>
+    <text x="79" y="318" fill="#ECE1F3" font-size="31" font-weight="500">to rewatch.</text>
+    <text x="81" y="385" fill="#D1BEFF" font-size="15" font-weight="650" letter-spacing="3.5">OFFLINE VIDEO FEED</text>
+  </g>
+
+  <g transform="rotate(-13 750 217)">
+    <rect x="670" y="108" width="148" height="253" rx="24" fill="#181322" opacity=".8"/>
+    <rect x="664" y="99" width="148" height="253" rx="24" fill="url(#warm)" stroke="#E8CAF1" stroke-opacity=".35"/>
+    <circle cx="729" cy="168" r="23" fill="#FFD4A6"/>
+    <path d="M671 265Q706 219 750 237T805 245v79q0 20-20 20h-94q-20 0-20-20Z" fill="#655172"/>
+    <path d="M671 295q41-46 84-19t50 3v45q0 20-20 20h-94q-20 0-20-20Z" fill="#3D304F"/>
+  </g>
+  <g transform="rotate(12 994 225)">
+    <rect x="934" y="108" width="144" height="261" rx="24" fill="#1E1528" stroke="#BFA6DE" stroke-opacity=".4"/>
+    <rect x="955" y="141" width="43" height="61" rx="8" fill="#7964A1"/>
+    <rect x="1011" y="141" width="43" height="61" rx="8" fill="#AC7A87"/>
+    <rect x="955" y="214" width="43" height="61" rx="8" fill="#49385E"/>
+    <rect x="1011" y="214" width="43" height="61" rx="8" fill="#544369"/>
+    <path d="M955 306h65m-65 13h49" stroke="#A690BD" stroke-width="5" stroke-linecap="round"/>
+  </g>
+  <rect x="777" y="62" width="204" height="345" rx="33" fill="#090710" opacity=".7"/>
+  <rect x="781" y="59" width="189" height="343" rx="31" fill="#0E0B13" stroke="#E1CBFF" stroke-width="2"/>
+  <g clip-path="url(#screen)">
+    <rect x="786" y="67" width="179" height="326" fill="url(#night)"/>
+    <g fill="#EAD4FF" opacity=".8">
+      <circle cx="803" cy="107" r="1.4"/><circle cx="837" cy="130" r="1.6"/><circle cx="895" cy="96" r="1.4"/>
+      <circle cx="944" cy="113" r="1.3"/><circle cx="846" cy="98" r="1"/><circle cx="924" cy="184" r="1.4"/>
+      <circle cx="808" cy="164" r="1.7"/><circle cx="824" cy="201" r="1.2"/><circle cx="889" cy="198" r="1.5"/>
+    </g>
+    <circle cx="897" cy="140" r="29" fill="#FFDFF1" opacity=".18"/><circle cx="897" cy="140" r="22" fill="#FFDFEE"/>
+    <path d="M783 269Q808 237 829 246T879 239T932 220l36 7v164H783Z" fill="#513965"/>
+    <path d="M783 295Q816 261 840 274T895 254T971 265v127H783Z" fill="#3C2D52"/>
+    <path d="M783 323Q811 296 845 304T900 289T970 286v106H783Z" fill="#261E39"/>
+    <circle cx="943" cy="251" r="10" fill="#AD809A" stroke="#FFF0FE" stroke-width="1.4"/>
+    <path d="M937 274q3-3 6 0 3-3 6 0 2 3-6 8-8-5-6-8Z" fill="#FF6387"/>
+    <path d="m939 295 4-2v-3l7 5-7 5v-3l-4 1Z" fill="#FAF4FF"/>
+    <path d="M801 328h45m-45 10h65" stroke="#F3E7FC" stroke-width="3" stroke-linecap="round" opacity=".75"/>
+    <rect x="786" y="352" width="179" height="41" fill="#0F0B14"/>
+    <g fill="none" stroke="#E0CEE9" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="m805 370 5-4 5 4v6h-10Z"/>
+      <path d="M848 367h8v10l-4-3-4 3Z"/>
+      <circle cx="896" cy="372" r="5"/><path d="M896 369v3l2 1"/>
+      <rect x="936" y="367" width="10" height="9" rx="2"/>
+    </g>
+  </g>
+  <g fill="none" stroke="#D6F5A0" stroke-width="1.7" stroke-linecap="round">
+    <path d="M1058 74h13m-6.5-6.5v13"/><path d="M649 346h12m-6-6v12"/>
+  </g>
+  <circle cx="1089" cy="346" r="3" fill="#D6F5A0"/>
+</svg>

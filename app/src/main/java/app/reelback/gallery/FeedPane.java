@@ -512,6 +512,11 @@ final class FeedPane extends FrameLayout {
         watchSampleAt = now;
     }
 
+    void stopTrackingCurrent() {
+        progress = null;
+        watchPosition = -1;
+    }
+
     private void showSpinnerIfLoading() {
         if (!disposed && foreground && !rendered && player.intendsToPlay()) spinner.setVisibility(VISIBLE);
     }

@@ -1,29 +1,73 @@
-# Reelback
+<div align="center">
+  <img src="docs/art/reelback-banner.svg" alt="Reelback. The videos you meant to rewatch." width="100%">
+</div>
 
-Reelback is an offline video gallery for Android 11 and later. The feed reads the videos Android indexes in MediaStore. The app has no network permission, account, analytics, or video copies.
+<h1 align="center">Reelback for Android</h1>
 
-- On first launch, choose which albums appear in Home. Suggested Camera albums start with portrait clips only. Folders named for common download apps are suggested too. Use the Orientation control to expand an album to all orientations. Edit your choices from Settings → Feed albums or the filter icon on Albums.
-- Home shuffles eligible clips by default. After 80% of a clip has played, it appears in History and is skipped on future visits to Home. Seeking does not count as playback. The current clip stays on screen until you leave it. You can still play a watched clip from History, Favorites, or its album.
-- Landscape videos are shown in full in the vertical player.
-- Swipe up and down to browse. Tap to pause and reveal the timeline, or drag horizontally along the bottom edge to scrub while playing. Double tap to save a favorite.
-- Hold the middle of the video for Clear display, speed, mute, and other actions. Hold either side while playing for temporary 2× speed. Tap the exit icon or press Back to leave Clear display.
-- Favorites are stored in Reelback. Albums show the folders Android reports for your gallery videos. Tap the album cover or name on a playing video to open that album, and press Back to return to the same clip. The album’s newest available video supplies its cover. Tap a tile to open a feed limited to that collection.
-- Share uses Android’s share sheet. Trash uses Android’s confirmation and moves the original video to the system Trash. The left swipe shortcut is off by default and uses the same confirmation when enabled.
-- Settings offers feed order, fit, the Trash gesture, and video access. Android 14 and later can grant access to a selected set of videos.
+<p align="center">Swipe through the videos already on your phone. Keep your favorites and pick which albums Home plays.</p>
 
-## Build
+<p align="center">
+  <strong><a href="https://github.com/altarafiya/reelback/releases/latest/download/Reelback.apk">Download the APK</a></strong>
+  · <a href="https://github.com/altarafiya/reelback/releases">Release notes</a>
+  · Android 11+
+</p>
 
-Open this folder in Android Studio with JDK 17, Android SDK Platform 36, and Android SDK Build Tools 36.0.0. The Gradle project uses Android Gradle Plugin 8.13.2 and has no runtime dependencies.
+<table>
+  <tr>
+    <td align="center" width="25%"><img src="docs/art/shuffle.svg" width="46" alt=""><br><strong>Shuffle feed</strong><br>Rediscover unwatched clips.</td>
+    <td align="center" width="25%"><img src="docs/art/albums.svg" width="46" alt=""><br><strong>Local albums</strong><br>Choose folders and orientations.</td>
+    <td align="center" width="25%"><img src="docs/art/history.svg" width="46" alt=""><br><strong>Watch history</strong><br>Replay or mark clips unwatched.</td>
+    <td align="center" width="25%"><img src="docs/art/gesture.svg" width="46" alt=""><br><strong>Quick gestures</strong><br>Swipe, seek, and hold for 2×.</td>
+  </tr>
+</table>
 
-You can also build and sign directly on Linux or macOS with the official SDK tools and JDK 17. Set `JAVA_HOME` and `ANDROID_SDK_ROOT`. To create your own signing key, run:
+<table>
+  <tr>
+    <td align="center"><img src="docs/art/feed.webp" alt="Reelback's vertical video feed with the album cover on the right" width="230"><br><strong>Home</strong></td>
+    <td align="center"><img src="docs/art/albums.webp" alt="Choose your albums with portrait Camera clips selected" width="230"><br><strong>Feed setup</strong></td>
+    <td align="center"><img src="docs/art/history.webp" alt="The History tab with a watched clip" width="230"><br><strong>History</strong></td>
+  </tr>
+</table>
+
+The screenshots use demo clips.
+
+## Get started
+
+1. Download `Reelback.apk` from Releases and open it on an Android 11 or later device. Android may ask you to allow installation from the app that opened the APK.
+2. Grant access to your videos and choose the albums you want in Home. Setup suggests portrait Camera clips and folders named for common download apps. You can change your choices in **Settings → Feed albums**.
+3. Swipe up or down to browse. Tap to pause and reveal the seek bar. Double tap to save a favorite. Hold the middle for video options, or hold either side while playing for temporary 2× speed.
+
+Landscape videos fit the full frame. Tap an album cover to open its folder, or use **Clear display** in the video options to watch with fewer controls. Share uses Android’s share sheet, and Trash asks for Android confirmation.
+
+## New in 1.4
+
+- **Mark as watched** sends a clip to History and advances Home.
+- **Mark as unwatched** makes the clip eligible for Home again if its album and orientation are included.
+- **Video details** shows the album, folder, duration, orientation, and frame size.
+
+Reelback also adds a clip to History after 80% of the clip has played. Home keeps the current clip on screen until you leave it, then skips it on future visits.
+
+## Privacy
+
+Reelback reads videos Android has indexed in your gallery. It opens files in the background, uses one native media player, and caches nearby thumbnails for swiping. Favorites, album choices, and watch history stay on the device. The app has no account, analytics, or network permission.
+
+## Build from source
+
+Open this folder in Android Studio with JDK 17, Android SDK Platform 36, and Build Tools 36.0.0. The Gradle project uses Android Gradle Plugin 8.13.2.
+
+To build a signed APK from the command line, set `JAVA_HOME`, `ANDROID_SDK_ROOT`, `REELBACK_KEYSTORE`, and `REELBACK_STORE_PASSWORD`, then run the build script.
+
+```sh
+./build-apk.sh
+```
+
+The APK is written to `build/Reelback.apk`. Pass a different output path as the first argument if needed. The script expects a key named `reelback` by default. Set `REELBACK_KEY_ALIAS` to use another alias.
+
+This command creates a signing key for your own build.
 
 ```sh
 keytool -genkeypair -keystore reelback.p12 -storetype PKCS12 -alias reelback \
   -keyalg RSA -keysize 3072 -validity 10000 -dname "CN=Reelback"
 ```
 
-Set `REELBACK_KEYSTORE` to the keystore’s absolute path and `REELBACK_STORE_PASSWORD` to its password in your shell environment. Then run `./build-apk.sh` to produce `build/Reelback.apk`. An output path can be passed as the first argument. The signing key is separate from the source. Android requires the same signing key to install an update over an existing installation.
-
-## Playback and storage
-
-The app uses one native Android media player at a time, loads thumbnails off the main thread, and caches nearby thumbnails for swipes. Playback uses the device’s supported formats and codecs. Favorites, watch history, and feed preferences live in app storage; uninstalling the app clears them.
+Android requires the same signing key to install an update over an existing installation.
